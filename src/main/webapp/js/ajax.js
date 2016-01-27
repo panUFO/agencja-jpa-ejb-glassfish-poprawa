@@ -9,11 +9,10 @@ function doAjax(url, type, dataType, data)
         data: data,
         error: function (errorThrown)
         {
-            console.log(errorThrown);
-            if(errorThrown.status == 400)
-                showIfError({status: errorThrown.status, message: errorThrown.responseText });
+            if(errorThrown.status == 200 || errorThrown.status == 201)
+                location.reload(true);
             else
-                showIfError({status: errorThrown.status, message: errorThrown.statusText });
+                showIfError({status: errorThrown.status, message: errorThrown.responseText });
         }
     });
 }
