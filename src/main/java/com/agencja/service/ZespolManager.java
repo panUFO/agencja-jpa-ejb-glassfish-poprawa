@@ -31,7 +31,7 @@ public class ZespolManager implements ZespolDAO
         return em.createNamedQuery("zespol.getAll").getResultList();
     }
 
-    public Zespol getZespolByID(Long id)
+    public Zespol getZespolByID(long id)
     {
         return em.find(Zespol.class, id);
     }

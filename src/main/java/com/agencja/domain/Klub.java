@@ -18,7 +18,7 @@ public class Klub {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idKlub;
+    private long idKlub;
 
     @Column(nullable = false)
     private String miasto;

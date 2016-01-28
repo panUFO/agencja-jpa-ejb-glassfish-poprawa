@@ -24,10 +24,10 @@ public class KoncertResource {
 
     @POST
     @Path("/addKoncert")
-    @Produces(MediaType.APPLICATION_JSON)
+    //@Produces(MediaType.APPLICATION_JSON)
     public Response addKoncert(@FormParam("nazwa_koncertu") String nazwa_koncertu,
                                @FormParam("ceny_biletow") double ceny_biletow,
-                               @FormParam("klub") long idKlub) {
+                               @FormParam("idKlub") long idKlub) {
 
         Klub klubById = new Klub();
         klubById.setIdKlub(idKlub);
@@ -37,6 +37,7 @@ public class KoncertResource {
         Koncert koncert = new Koncert(nazwa_koncertu, ceny_biletow, klub);
 
         koncertManager.addKoncert(koncert);
+       // return koncert;
         return Response.status(Response.Status.CREATED).build();
     }
 
@@ -53,7 +54,7 @@ public class KoncertResource {
     public Response updateKoncert(@FormParam("idKoncert") long idKoncert,
                                   @FormParam("nazwa_koncertu") String nazwa_koncertu,
                                   @FormParam("ceny_biletow") double ceny_biletow,
-                                  @FormParam("klub") long idKlub) {
+                                  @FormParam("idKlub") long idKlub) {
         Klub klubById = new Klub();
         klubById.setIdKlub(idKlub);
 

@@ -6,11 +6,12 @@ $(document).ready(function()
         idKlub,
         $updateAlert = $('#update-alert'),
         $inputsUpdate = $('#inputs-update').children(),
-        $tbody = $('#hiring-tbody');
+        $tbody = $('#koncerty-tbody');
 
     doAjax('../agencja/rest/koncert/getAllKoncerts', 'GET', 'JSON', '').then(
     function(response)
     {
+
         makeRowsInTable(response, $tbody);
     });
 
@@ -18,7 +19,7 @@ $(document).ready(function()
     function(response)
     {
         createOptionSelect($('#select-klub-add'), response);
-        createOptionSelect($inputsUpdate.eq(1), response);
+        createOptionSelect($inputsUpdate.eq(3), response);
     });
 
 
@@ -49,7 +50,7 @@ $(document).ready(function()
        $inputsUpdate.eq(0).val(idKoncert);
        $inputsUpdate.eq(1).val(nazwa_koncertu);
        $inputsUpdate.eq(2).val(ceny_biletow);
-       $inputsUpdate.eq(3).find('option[value='+idKlub+']').prop('selected', true);
+       $inputsUpdate.eq(3).find('option[value="'+idKlub+'"]').prop('selected', true);
     });
 
     $('#update-form').submit(function(e)
@@ -58,24 +59,24 @@ $(document).ready(function()
         $updateAlert.text('');
         var newIdKoncert = $inputsUpdate.eq(0).val(),
             newNazwa_koncertu = $inputsUpdate.eq(1).val(),
-            newCeny_biletow = $inputsUpdate.eq(2).val();
+            newCeny_biletow = $inputsUpdate.eq(2).val(),
             newIdKlub = $inputsUpdate.eq(3).val();
         if(idKoncert != '' && typeof idKoncert != 'undefined' && idKoncert == newIdKoncert)
         {
-            if(idKlub == newidKlub && nazwa_koncertu == newNazwa_koncertu && ceny_biletow == newCeny_biletow)
+            if(idKlub == newIdKlub && nazwa_koncertu == newNazwa_koncertu && ceny_biletow == newCeny_biletow)
             {
                 $('#update-modal').modal('hide');
             }
             else
             {
                 doAjax('../agencja/rest/koncert/updateKoncert', 'PUT', 'JSON',
-                {
-                    idKoncert: newIdKoncert,
-                    nazwa_koncertu: newNazwa_koncertu,
-                    ceny_biletow: newCeny_biletow,
-                    idKlub: newIdKlub,
+                $.parseJSON({
+                    'idKoncert': newIdKoncert,
+                    'nazwa_koncertu': newNazwa_koncertu,
+                    'ceny_biletow': newCeny_biletow,
+                    'idKlub': newIdKlub
 
-                 }).success(function(response){ location.reload(true); });
+                 })).success(function(response){ console.log("SUKCES"); });
                 $('#update-modal').modal('hide');
             }
             e.preventDefault();
@@ -99,8 +100,9 @@ $(document).ready(function()
 
     	else
     	{
-    		doAjax('../agencja/rest/koncert/addKoncert', 'POST', 'JSON', { nazwa_koncertu: nazwa_koncertu, ceny_biletow: ceny_biletow, idKlub: idKlub})
+    		doAjax('../agencja/rest/koncert/addKoncert', 'POST', 'JSON',{  nazwa_koncertu: nazwa_koncertu, ceny_biletow: ceny_biletow, idKlub: idKlub})
     		    .success(function(response){ location.reload(true); });
+
     	}
     });
 

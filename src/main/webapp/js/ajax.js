@@ -9,10 +9,11 @@ function doAjax(url, type, dataType, data)
         data: data,
         error: function (errorThrown)
         {
-            if(errorThrown.status == 200 || errorThrown.status == 201)
+            console.log(arguments);
+         /*   if(errorThrown.status == 200 || errorThrown.status == 201)
                 location.reload(true);
             else
-                showIfError({status: errorThrown.status, message: errorThrown.responseText });
+                showIfError({status: errorThrown.status, message: errorThrown.responseText });*/
         }
     });
 }
@@ -27,6 +28,7 @@ function showIfError(response)
 
 function makeRowsInTable(listObjects, $tbody)
 {
+
 
     var $lastTr = $tbody.children(0),
         buttonEdit = '<button type="button" data-toggle="modal" data-target="#update-modal" class="glyphicon glyphicon-edit btn-success update-row" aria-hidden="true"></button>',

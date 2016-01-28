@@ -7,7 +7,7 @@ public interface ZespolDAO {
 
     Zespol addZespol(Zespol zespol);
     List<Zespol> getAllZespols();
-    Zespol getZespolByID(Long id);
+    Zespol getZespolByID(long id);
     Zespol updateZespol(Zespol zespol);
     void deleteZespol(Zespol zespol);
 }

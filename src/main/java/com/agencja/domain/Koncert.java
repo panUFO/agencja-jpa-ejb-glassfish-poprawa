@@ -13,7 +13,7 @@ public class Koncert {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idKoncert;
+    private long idKoncert;
 
     @Column(nullable = false)
     private String nazwa_koncertu;

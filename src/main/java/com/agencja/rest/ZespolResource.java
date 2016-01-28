@@ -44,7 +44,7 @@ public class ZespolResource {
     @GET
     @Path("/getZespol/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Zespol getZespolByID(@PathParam("id") Long id) {
+    public Zespol getZespolByID(@PathParam("id") long id) {
         return zespolManager.getZespolByID(id);
     }
 
