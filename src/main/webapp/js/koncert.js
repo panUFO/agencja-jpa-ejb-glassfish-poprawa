@@ -35,6 +35,7 @@ $(document).ready(function()
             doAjax('../agencja/rest/koncert/deleteKoncert', 'DELETE', 'JSON', {idKoncert: idKoncert})
                 .success(function(response){ location.reload(true); });
         }
+        location.reload(true);
     });
 
     $tbody.on('click', '.update-row', function()
@@ -70,15 +71,18 @@ $(document).ready(function()
             else
             {
                 doAjax('../agencja/rest/koncert/updateKoncert', 'PUT', 'JSON',
-                $.parseJSON({
-                    'idKoncert': newIdKoncert,
-                    'nazwa_koncertu': newNazwa_koncertu,
-                    'ceny_biletow': newCeny_biletow,
-                    'idKlub': newIdKlub
+                    {
+                        idKoncert: newIdKoncert,
+                        nazwa_koncertu: newNazwa_koncertu,
+                        ceny_biletow: newCeny_biletow,
+                        idKlub: newIdKlub
 
-                 })).success(function(response){ console.log("SUKCES"); });
+                    }).success(function (response) {
+                    location.reload(true);
+                });
                 $('#update-modal').modal('hide');
             }
+            location.reload(true);
             e.preventDefault();
         }
     });
@@ -104,6 +108,7 @@ $(document).ready(function()
     		    .success(function(response){ location.reload(true); });
 
     	}
+        location.reload(true);
     });
 
 });

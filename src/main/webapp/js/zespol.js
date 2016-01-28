@@ -25,6 +25,7 @@ $(document).ready(function()
         {
             doAjax('../agencja/rest/zespol/deleteZespol', 'DELETE', 'JSON', {idZespol: idZespol}).success(function(response){ location.reload(true); });
         }
+        location.reload(true);
     });
 
     $tbody.on('click', '.update-row', function()
@@ -75,6 +76,7 @@ $(document).ready(function()
                      location.reload(true);
                  });
             }
+            location.reload(true);
             e.preventDefault();
         }
     });
@@ -92,6 +94,7 @@ $(document).ready(function()
                 {
                     location.reload(true);
                 });;
+            location.reload(true);
         });
 
 });
